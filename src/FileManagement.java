@@ -102,6 +102,48 @@ public class FileManagement{
 
     }
 
+    public void write(String content, String path) throws Exception{
+        /*
+         * Função que sobrescreve o conteúdo de um arquivo
+         */
+        // Abrindo arquivo
+        Formatter output = null;
+        try{
+            output = new Formatter(path);
+        }
+        catch (FileNotFoundException e){
+            throw new Exception("Erro ao abrir arquivo. Lembre-se que path deve ser relativo da seguinte forma: \"path\\to\\file.extension\", ou utilize path absoluto");
+        }
+        catch (SecurityException e){
+            System.err.println( "Sem permissões para abrir o arquivo" );
+         System.exit( 1 );
+        }
+        catch (Exception e){
+            throw new Exception("Erro desconhecido ao abrir arquivo");
+        }
+
+        // Sobrescrevendo o arquivo
+        try{
+            output.format("%s", content);
+        }
+        catch (NoSuchElementException e){
+            output.close();
+            throw new Exception("Arquivo formatado de forma indevida");
+        }
+        catch (FormatterClosedException e){
+            throw new Exception("Erro na escrita do arquivo");
+        }
+        catch (Exception e){
+            throw new Exception("Erro desconhecido ao ler arquivo");
+        }
+
+        // Fechando arquivo
+        if(output != null){
+            output.close();
+        }
+
+    }
+
     public void append(ArrayList<String> lines, String path) throws Exception{
         /*
          * Função que adiciona linhas ao final de um arquivo
@@ -113,6 +155,20 @@ public class FileManagement{
         for (String line : lines) {
             fullLines.add(line);
         }
+        
+        // Sobrescrevendo o arquivo
+        this.write(fullLines, path);
+    }
+
+    public void append(String content, String path) throws Exception{
+        /*
+         * Função que adiciona linhas ao final de um arquivo
+         */
+        // Lendo o arquivo
+        ArrayList<String> fullLines = this.read(path);
+        
+        // Adicionando no array "fullLines" as linhas passadas como parâmetro
+        fullLines.add(content);
         
         // Sobrescrevendo o arquivo
         this.write(fullLines, path);

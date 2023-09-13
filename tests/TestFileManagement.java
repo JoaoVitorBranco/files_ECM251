@@ -84,18 +84,56 @@ public class TestFileManagement {
 
             Random rand = new Random();
             int rand_val = rand.nextInt(100); 
-            ArrayList<String> lines = new ArrayList<>(Arrays.asList(String.valueOf(rand_val)));
+            ArrayList<String> lines = new ArrayList<>(Arrays.asList(String.valueOf(rand_val), String.valueOf(rand_val + 1)));
 
             ArrayList<String> linesBefore = fileManagement.read(path);
             fileManagement.append(lines, path);
             ArrayList<String> linesReaded = fileManagement.read(path);
 
             assertEquals(linesBefore.size() + lines.size(), linesReaded.size());
-            assertEquals(String.valueOf(rand_val), linesReaded.get(linesReaded.size() - 1));
+            assertEquals(String.valueOf(rand_val), linesReaded.get(linesReaded.size() - 2));
+            assertEquals(String.valueOf(rand_val+1), linesReaded.get(linesReaded.size() - 1));
 
         } catch (Exception err){
             assertTrue(false);
         }
     }
     
+    @Test
+    public void testWriteContent(){
+        try{
+            String content = "bananas \n de pijamas";
+            fileManagement.write(content, "C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
+            ArrayList<String> linesReaded = fileManagement.read("C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
+            assertEquals(2, linesReaded.size());
+            assertEquals("bananas ", linesReaded.get(0));
+            assertEquals(" de pijamas", linesReaded.get(1));
+
+
+        } catch (Exception err){
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testAppendContent(){
+        try{
+            String path ="C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_append.txt";
+
+            Random rand = new Random();
+            int rand_val = rand.nextInt(100); 
+            String content = String.valueOf(rand_val);
+
+            ArrayList<String> linesBefore = fileManagement.read(path);
+            fileManagement.append(content, path);
+            ArrayList<String> linesReaded = fileManagement.read(path);
+
+            assertEquals(linesBefore.size() + 1, linesReaded.size());
+            assertEquals(String.valueOf(rand_val), linesReaded.get(linesReaded.size() - 1));
+
+        } catch (Exception err){
+            assertTrue(false);
+        }
+    }
+
 }

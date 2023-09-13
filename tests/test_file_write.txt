@@ -1,6 +1,2 @@
-maca1
-maca2
-maca3
-casa1
-casa2
-casa3
+bananas 
+ de pijamas
