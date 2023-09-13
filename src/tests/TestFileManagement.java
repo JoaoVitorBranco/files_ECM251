@@ -1,4 +1,4 @@
-package tests;
+package src.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -7,20 +7,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.tools.ForwardingJavaFileManager;
-
 import org.junit.Test;
 
 import src.FileManagement;
 
 public class TestFileManagement {
     private FileManagement fileManagement = new FileManagement();
+    private String generalPath = "src\\tests";
     @Test 
     public void testRead(){
         try{
-            ArrayList<String> lines = fileManagement.read("C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_read.txt");
+            ArrayList<String> lines = fileManagement.read(generalPath + "\\test_file_read.txt");
             assertEquals(lines.size(), 3);
             assertEquals(lines.get(0), "linha0");
             assertEquals(lines.get(1), "linha1");
@@ -40,8 +37,8 @@ public class TestFileManagement {
                     "banana3"
                 )
             );
-            fileManagement.write(lines, "C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
-            ArrayList<String> linesReaded = fileManagement.read("C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
+            fileManagement.write(lines,  generalPath + "\\test_file_write.txt");
+            ArrayList<String> linesReaded = fileManagement.read( generalPath + "\\test_file_write.txt");
             assertEquals(lines.size(), linesReaded.size());
             for (int i = 0; i < lines.size(); i++) {
                 assertEquals(lines.get(i), linesReaded.get(i));
@@ -65,8 +62,8 @@ public class TestFileManagement {
                     "casa3"
                 )
             );
-            fileManagement.write(lines, "C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
-            ArrayList<String> linesReaded = fileManagement.read("C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
+            fileManagement.write(lines,  generalPath + "\\test_file_write.txt");
+            ArrayList<String> linesReaded = fileManagement.read( generalPath + "\\test_file_write.txt");
             assertEquals(lines.size(), linesReaded.size());
             for (int i = 0; i < lines.size(); i++) {
                 assertEquals(lines.get(i), linesReaded.get(i));
@@ -80,7 +77,7 @@ public class TestFileManagement {
     @Test
     public void testAppend(){
         try{
-            String path ="C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_append.txt";
+            String path = generalPath + "\\test_file_append.txt";
 
             Random rand = new Random();
             int rand_val = rand.nextInt(100); 
@@ -103,8 +100,8 @@ public class TestFileManagement {
     public void testWriteContent(){
         try{
             String content = "bananas \n de pijamas";
-            fileManagement.write(content, "C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
-            ArrayList<String> linesReaded = fileManagement.read("C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_write.txt");
+            fileManagement.write(content,  generalPath + "\\test_file_write.txt");
+            ArrayList<String> linesReaded = fileManagement.read( generalPath + "\\test_file_write.txt");
             assertEquals(2, linesReaded.size());
             assertEquals("bananas ", linesReaded.get(0));
             assertEquals(" de pijamas", linesReaded.get(1));
@@ -118,7 +115,7 @@ public class TestFileManagement {
     @Test
     public void testAppendContent(){
         try{
-            String path ="C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_append.txt";
+            String path = generalPath + "\\test_file_append.txt";
 
             Random rand = new Random();
             int rand_val = rand.nextInt(100); 
