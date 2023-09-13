@@ -1,15 +1,16 @@
 name: CI
 on: push
 jobs:
-  run_tests:
+  RunTests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-      - name: Set up JDK 19
+      - name: Set up JDK 19.0.2
         uses: actions/setup-java@v2
         with:
-          java-version: 19
+          java-version: '19'
+          distribution: 'adopt'
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
