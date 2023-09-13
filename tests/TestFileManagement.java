@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -70,6 +71,27 @@ public class TestFileManagement {
             for (int i = 0; i < lines.size(); i++) {
                 assertEquals(lines.get(i), linesReaded.get(i));
             }
+
+        } catch (Exception err){
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testAppend(){
+        try{
+            String path ="C:\\Users\\joaov\\Desktop\\EDCII\\Linguagens de Programa\u00E7\u00E3o I\\files_ECM251\\tests\\test_file_append.txt";
+
+            Random rand = new Random();
+            int rand_val = rand.nextInt(100); 
+            ArrayList<String> lines = new ArrayList<>(Arrays.asList(String.valueOf(rand_val)));
+
+            ArrayList<String> linesBefore = fileManagement.read(path);
+            fileManagement.append(lines, path);
+            ArrayList<String> linesReaded = fileManagement.read(path);
+
+            assertEquals(linesBefore.size() + lines.size(), linesReaded.size());
+            assertEquals(String.valueOf(rand_val), linesReaded.get(linesReaded.size() - 1));
 
         } catch (Exception err){
             assertTrue(false);

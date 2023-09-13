@@ -77,11 +77,12 @@ public class FileManagement{
             throw new Exception("Erro desconhecido ao abrir arquivo");
         }
 
-        // Lendo o arquivo
+        // Sobrescrevendo o arquivo
         try{
-            for (String line : lines) {
-                output.format("%s\n", line);
+            for (int i = 0; i < lines.size() - 1; i++) {
+                output.format("%s\n", lines.get(i));
             }
+            output.format("%s", lines.get(lines.size() - 1));
         }
         catch (NoSuchElementException e){
             output.close();
@@ -99,5 +100,21 @@ public class FileManagement{
             output.close();
         }
 
+    }
+
+    public void append(ArrayList<String> lines, String path) throws Exception{
+        /*
+         * Função que adiciona linhas ao final de um arquivo
+         */
+        // Lendo o arquivo
+        ArrayList<String> fullLines = this.read(path);
+        
+        // Adicionando no array "fullLines" as linhas passadas como parâmetro
+        for (String line : lines) {
+            fullLines.add(line);
+        }
+        
+        // Sobrescrevendo o arquivo
+        this.write(fullLines, path);
     }
 }
