@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class FileManagement{
     /*
      * Classe que gerencia a leitura e escrita de arquivos
+     *  Desenvolvida por João Vitor (@JoaoVitorBranco) e Vitor Soller (@VgsStudio)
      */
     
     public FileManagement(){
@@ -56,7 +57,52 @@ public class FileManagement{
         }
         return lines;
     }
- 
+
+    public String readGetString(String path) throws Exception{
+        /*
+         * Função que lê um arquivo e retorna todas as linhas em uma String
+         * Necessariamente utiliza o Scanner
+         */
+        // Abrindo arquivo
+        Scanner scanner = null;
+        try{
+            scanner = new Scanner(new File(path));
+        }
+        catch (FileNotFoundException e){
+            throw new Exception("Erro ao abrir arquivo. Lembre-se que path deve ser relativo da seguinte forma: \"path\\\\to\\\\file.extension\", ou utilize path absoluto");
+        }
+        catch (Exception e){
+            throw new Exception("Erro desconhecido ao abrir arquivo");
+        }
+
+        // Lendo arquivo
+        String lines = "";
+        try{
+            while(scanner.hasNextLine()){
+                lines += scanner.nextLine();
+                if (scanner.hasNextLine()){
+                    lines += "\n";
+                }
+            }
+        }
+        catch (NoSuchElementException e){
+            scanner.close();
+            throw new Exception("Arquivo formatado de forma indevida");
+        }
+        catch (IllegalStateException e){
+            throw new Exception("Erro ao ler arquivo");
+        }
+        catch (Exception e){
+            throw new Exception("Erro desconhecido ao ler arquivo");
+        }
+
+        // Fechando arquivo
+        if(scanner != null){
+            scanner.close();
+        }
+        return lines;
+    }
+
     public void write(ArrayList<String> lines, String path) throws Exception{
         /*
          * Função que sobrescreve o conteúdo de um arquivo

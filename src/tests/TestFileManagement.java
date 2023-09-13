@@ -28,6 +28,16 @@ public class TestFileManagement {
     }
 
     @Test
+    public void testReadGetString(){
+        try{
+            String content = fileManagement.readGetString(generalPath + "\\test_file_read.txt");
+            assertEquals("linha0\nlinha1\nlinha2", content);
+        } catch (Exception err){
+            assertTrue(false);
+        }
+    }
+
+    @Test
     public void testWrite(){
         try{
             ArrayList<String> lines = new ArrayList<>(
