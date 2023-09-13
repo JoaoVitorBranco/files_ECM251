@@ -20,5 +20,8 @@
             <version>5.10.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <testSourceDirectory>src/tests</testSourceDirectory>
+    </build>
     
 </project>
