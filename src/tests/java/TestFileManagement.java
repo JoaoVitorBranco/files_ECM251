@@ -1,4 +1,4 @@
-package src.tests;
+package src.tests.java;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,11 +9,11 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import src.main.FileManagement;
+import src.main.java.FileManagement;
 
 public class TestFileManagement {
     private FileManagement fileManagement = new FileManagement();
-    private String generalPath = "src\\tests";
+    private String generalPath = "src\\tests\\java";
     @Test 
     public void testRead(){
         try{
