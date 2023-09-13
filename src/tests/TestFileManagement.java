@@ -9,7 +9,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import src.FileManagement;
+import src.main.FileManagement;
 
 public class TestFileManagement {
     private FileManagement fileManagement = new FileManagement();
