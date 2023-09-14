@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class FileManagement{
     /*
      * Classe que gerencia a leitura e escrita de arquivos
-     *  Desenvolvida por João Vitor (@JoaoVitorBranco) e Vitor Soller (@VgsStudio)
+     * Desenvolvida por João Vitor (@JoaoVitorBranco) e Vitor Soller (@VgsStudio)
      */
     
     public FileManagement(){
